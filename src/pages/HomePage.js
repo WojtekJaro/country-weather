@@ -15,8 +15,7 @@ const HomePage = () => {
     setCountries(data);
   };
 
-  console.log(countries);
-  if (countries.length == 0) {
+  if (countries.length === 0) {
     return "Loading"
   }
 
