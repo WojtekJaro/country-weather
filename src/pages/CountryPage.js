@@ -12,7 +12,7 @@ const CountryPage = () => {
 	useEffect(() => {
 		if (!item.borders) return
 		getNeighbours()
-	}, [])
+	}, [item.borders])
 
 	const navigate = useNavigate()
 
@@ -38,7 +38,7 @@ const CountryPage = () => {
 
 	return (
 		<Container maxWidth='xl'>
-			<Button variant='outlined'>
+			<Button  sx={{ margin: '30px 0' }} variant='outlined'>
 				<Link to='/'>Wróć</Link>
 			</Button>
 
@@ -87,7 +87,7 @@ const CountryPage = () => {
 						</Grid>
 					</Grid>
 
-					<ButtonGroup size='medium' aria-label='large button group'>
+					<ButtonGroup sx={{display:'flex',flexWrap:'wrap',gap:'5px'}} size='medium' aria-label='large button group'>
 						{neighbours.map(neighbour => (
 							<Button onClick={() => handleNavigate(neighbour)} key={neighbour.name.common}>
 								{neighbour.name.common}
