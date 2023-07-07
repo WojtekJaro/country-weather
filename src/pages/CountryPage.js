@@ -8,16 +8,18 @@ const CountryPage = () => {
 	} = useLocation()
 	console.log(item)
 
-	const person = {
-		firstname:"Jan",
-		lastname:"Kowalski"
-	}
 
 	const nativeKey = Object.keys(item.name.nativeName)[0];
 	const nativeName = item.name.nativeName[nativeKey];
-
+    const languages = Object.values(item.languages);
+    const currenciesKey = Object.keys(item.currencies)[0];
+    const currencies = item.currencies[currenciesKey];
+    console.log(currencies)
+    
 	return (
 		<div>
+            
+
 			<Grid container spacing={2}>
 				<Grid item xs={6}>
 					<CardMedia sx={{ height: 400 }} image={item.flags.png} title='green iguana' />
@@ -29,9 +31,16 @@ const CountryPage = () => {
                     <Typography variant="subtitle1" component="span" >{item.subregion} </Typography><br />
                     <Typography variant="subtitle1" component="span" >{item.capital} </Typography><br />
                     <Typography variant="subtitle1" component="span" >{item.borders} </Typography><br />
+                    <Typography variant="subtitle1" component="span" >{currencies.name} </Typography><br />
+                    
                 
                     
-                    
+                    {languages.map((language) => (
+                            <p key={language}>
+                               {language} 
+                            </p>
+                    ))
+                    }
                       
                   
 
