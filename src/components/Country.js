@@ -5,28 +5,40 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useNavigate } from "react-router-dom";
 
 const Country = ({item}) => {
+
+    const navigate = useNavigate();
+    const slug = item.title.replaceAll(" ", "-").toLowerCase();
+
+    const handleNavigate = () => {
+      navigate(`/countries/${slug}`, {state:{item}})
+    }
+
+
   return (
-    <Card >
+    <Card onClick={handleNavigate} >
     <CardMedia
       sx={{ height: 180 }}
-      image="/static/images/cards/contemplative-reptile.jpg"
+      image={item.flags.png}
       title="green iguana"
     />
     <CardContent>
-      <Typography gutterBottom variant="h5" component="div">
-        Lizard
+      <Typography gutterBottom variant="h6" component="div">
+        {item.name.common}
       </Typography>
       <Typography variant="body2" color="text.secondary">
-        Lizards are a widespread group of squamate reptiles, with over 6,000
-        species, ranging across all continents except Antarctica
+        Populacja: {item.population}
+      </Typography>
+      <Typography variant="body2" color="text.secondary">
+        Region: {item.region}
+      </Typography>
+      <Typography variant="body2" color="text.secondary">
+        Stolica: {item.capital}
       </Typography>
     </CardContent>
-    <CardActions>
-      <Button size="small">Share</Button>
-      <Button size="small">Learn More</Button>
-    </CardActions>
+   
   </Card>
   )
 }

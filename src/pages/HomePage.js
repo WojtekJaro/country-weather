@@ -16,6 +16,9 @@ const HomePage = () => {
   };
 
   console.log(countries);
+  if (countries.length == 0) {
+    return "Loading"
+  }
 
   return (
     <Container maxWidth="xl">
