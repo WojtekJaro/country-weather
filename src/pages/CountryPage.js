@@ -8,6 +8,14 @@ const CountryPage = () => {
 	} = useLocation()
 	console.log(item)
 
+	const person = {
+		firstname:"Jan",
+		lastname:"Kowalski"
+	}
+
+	const nativeKey = Object.keys(item.name.nativeName)[0];
+	const nativeName = item.name.nativeName[nativeKey];
+
 	return (
 		<div>
 			<Grid container spacing={2}>
@@ -16,7 +24,7 @@ const CountryPage = () => {
 				</Grid>
 				<Grid item xs={6}>
                     <Typography variant="h2">{item.name.common} </Typography>
-                    <Typography variant="h5">{item.name.nativeName.ara.common} </Typography>
+                    <Typography variant="h5">{nativeName.official} </Typography>
                     <Typography variant="subtitle1" component="span" >{item.region} </Typography><br />
                     <Typography variant="subtitle1" component="span" >{item.subregion} </Typography><br />
                     <Typography variant="subtitle1" component="span" >{item.capital} </Typography><br />
