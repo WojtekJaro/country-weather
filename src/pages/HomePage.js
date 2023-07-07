@@ -24,7 +24,7 @@ const HomePage = () => {
       <Typography variant="h3">All Countries</Typography>
       <Grid container spacing={2}>
         {countries.map((country) => (
-          <Grid item md={3} sm={6} xs={12}>
+          <Grid key={country.cca3} item md={3} sm={6} xs={12}>
             <Country item={country} />
           </Grid>
         ))}

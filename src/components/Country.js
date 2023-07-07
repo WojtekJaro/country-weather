@@ -12,7 +12,7 @@ const Country = ({ item }) => {
   const slug = item.name.common.replaceAll(" ", "-").toLowerCase();
 
   const handleNavigate = () => {
-    navigate(`/countries/${slug}`, { state: { item } });
+    navigate(`/country/${slug}`, { state: { item } });
   };
 
   return (
