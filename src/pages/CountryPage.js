@@ -1,6 +1,7 @@
 import { Button, ButtonGroup, CardMedia, Container, Grid, List, ListItem, Typography } from '@mui/material'
 import React, { useEffect, useState, useTransition } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import Weather from '../components/Weather'
 
 const CountryPage = () => {
 	const {
@@ -8,6 +9,7 @@ const CountryPage = () => {
 	} = useLocation()
 
 	const [neighbours, setNeighbours] = useState([])
+	
 
 	useEffect(() => {
 		if (!item.borders) return
@@ -96,7 +98,9 @@ const CountryPage = () => {
 					</ButtonGroup>
 				</Grid>
 			</Grid>
+			<Weather capital={item.capital}/>
 		</Container>
+		
 	)
 }
 
