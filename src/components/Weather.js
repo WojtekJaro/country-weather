@@ -27,42 +27,43 @@ const marks = [
 const Weather = ({ capital }) => {
 	const getWeather = async () => {
 		const response = await fetch(
-			`https://api.openweathermap.org/data/2.5/weather?q=${capital}&appid=b8f337afbc9706d3f8db77374b959a7d`
+			`https://api.openweathermap.org/data/2.5/weather?q=${capital}&appid=${process.env.REACT_APP_API_KEY}`
 		)
 		const data = await response.json()
 		setWeather(data)
 	}
-	const [weather, setWeather] = useState([])
+	const [weather, setWeather] = useState(null)
 	const [temp, setTemp] = useState()
 
 	useEffect(() => {
 		getWeather()
 	}, [capital])
-	useEffect(() => {
-		const celcius = (weather.name?.temp - 273.15).toFixed()
-		setTemp(celcius)
+
+	// useEffect(() => {
+	// 	const celcius = (weather.main?.temp - 273.15).toFixed()
+	// 	setTemp(celcius)
 		
 
-	}, [weather])
+	// }, [weather])
 
-	if (weather.length === 0) {
+	if (!weather) {
 		return 'Loading'
 	}
-
-	// 	const convertTemp = temp => {
-	// 		return (temp - 273.15).toFixed()
-	// 	}
-	// 	const currentTemp = convertTemp(weather.main.temp);
-	// console.log(currentTemp)
-	// 	console.log(weather)
+console.log(weather)
+		const convertTemp = temp => {
+			return (temp - 273.15).toFixed()
+		}
+		const currentTemp = convertTemp(weather.main.temp);
+	console.log(currentTemp)
+		console.log(weather)
 
 	return (
 		<div>
 			<Typography gutterBottom variant='h6' component='div'>
-				{weather.name.common}
+				{weather.name}
 			</Typography>
 			<Typography variant='body2' color='text.secondary'>
-				{/* <strong> Temperatura: </strong> {convertTemp(weather.main.temp)}℃ */}
+				<strong> Temperatura: </strong> {convertTemp(weather.main.temp)}℃
 			</Typography>
 			<Typography variant='body2' color='text.secondary'>
 				<strong> Wilgotność: </strong> {weather.main.humidity} %
@@ -72,7 +73,7 @@ const Weather = ({ capital }) => {
 			</Typography>
 			<Slider
 				aria-label='Custom marks'
-				defaultValue={temp}
+				defaultValue={weather.main.temp - 272}
 				getAriaValueText={valuetext}
 				step={10}
 				valueLabelDisplay='auto'
